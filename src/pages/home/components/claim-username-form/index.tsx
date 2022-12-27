@@ -11,7 +11,7 @@ const claimUsernameFormSchema = z.object({
   username: z
     .string({ required_error: 'Username requerido' })
     .min(3, 'Minimo 3 caracteres')
-    .regex(/^([a-z\\-]+)$/i, 'Permitido apenas letras e hifens')
+    .regex(/^([a-z\\0-9\\-]+)$/i, 'Permitido apenas letras e hifens')
     .transform((username) => username.toLowerCase()),
 })
 
