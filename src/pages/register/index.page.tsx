@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import { ArrowRight } from 'phosphor-react'
 import { AxiosError } from 'axios'
 import { z } from 'zod'
@@ -46,6 +47,8 @@ export default function Register() {
         name: data.name,
         username: data.username,
       })
+
+      await router.push('/register/connect-calendar')
     } catch (err) {
       if (err instanceof AxiosError) {
         return alert(err.response?.data?.message ?? err.message)
@@ -56,43 +59,49 @@ export default function Register() {
   }
 
   return (
-    <S.Container>
-      <S.Header>
-        <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
-        <Text>
-          Precisamos de algumas informações para criar seu perfil! Ah, você pode
-          editar essas informações depois.
-        </Text>
+    <>
+      <Head>
+        <title>Registrar | Ignite Call</title>
+      </Head>
 
-        <MultiStep size={4} currentStep={1} />
-      </S.Header>
+      <S.Container>
+        <S.Header>
+          <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
+          <Text>
+            Precisamos de algumas informações para criar seu perfil! Ah, você
+            pode editar essas informações depois.
+          </Text>
 
-      <S.Form as="form" onSubmit={handleSubmit(handleRegister)}>
-        <label>
-          <Text size="sm">Nome de usuário</Text>
-          <TextInput
-            prefix="ignite.com/"
-            placeholder="seu-usuario"
-            {...register('username')}
-          />
+          <MultiStep size={4} currentStep={1} />
+        </S.Header>
 
-          {errors.username && (
-            <S.FormError size="sm">{errors.username.message}</S.FormError>
-          )}
-        </label>
-        <label>
-          <Text size="sm">Nome completo</Text>
-          <TextInput placeholder="Seu nome" {...register('name')} />
+        <S.Form as="form" onSubmit={handleSubmit(handleRegister)}>
+          <label>
+            <Text size="sm">Nome de usuário</Text>
+            <TextInput
+              prefix="ignite.com/"
+              placeholder="seu-usuario"
+              {...register('username')}
+            />
 
-          {errors.name && (
-            <S.FormError size="sm">{errors.name.message}</S.FormError>
-          )}
-        </label>
+            {errors.username && (
+              <S.FormError size="sm">{errors.username.message}</S.FormError>
+            )}
+          </label>
+          <label>
+            <Text size="sm">Nome completo</Text>
+            <TextInput placeholder="Seu nome" {...register('name')} />
 
-        <Button type="submit" disabled={isSubmitting}>
-          Próximo passo <ArrowRight />
-        </Button>
-      </S.Form>
-    </S.Container>
+            {errors.name && (
+              <S.FormError size="sm">{errors.name.message}</S.FormError>
+            )}
+          </label>
+
+          <Button type="submit" disabled={isSubmitting}>
+            Próximo passo <ArrowRight />
+          </Button>
+        </S.Form>
+      </S.Container>
+    </>
   )
 }
