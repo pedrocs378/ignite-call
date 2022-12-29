@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { ArrowRight } from 'phosphor-react'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -85,12 +86,14 @@ export default function TimeIntervals() {
 
   const { fields } = useFieldArray({ control, name: 'intervals' })
 
-  async function handleSetTimeIntervals(data: TimeIntervalsFormOutput) {
-    console.log(data)
+  const router = useRouter()
 
+  async function handleSetTimeIntervals(data: TimeIntervalsFormOutput) {
     await api.post('/users/time-intervals', {
       intervals: data.intervals,
     })
+
+    await router.push('/register/update-profile')
   }
 
   const weekdays = getWeekDays()
