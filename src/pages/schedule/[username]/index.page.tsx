@@ -1,5 +1,6 @@
 import { Avatar, Heading, Text } from '@ignite-ui/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 
 import { prisma } from '../../../lib/prisma'
 
@@ -17,15 +18,21 @@ type ScheduleProps = {
 
 export default function Schedule({ user }: ScheduleProps) {
   return (
-    <S.Container>
-      <S.UserHeader>
-        <Avatar src={user.avatarUrl} alt={user.name} />
-        <Heading>{user.name}</Heading>
-        <Text>{user.bio}</Text>
-      </S.UserHeader>
+    <>
+      <Head>
+        <title>Agenda de {user.name} | Ignite Call</title>
+      </Head>
 
-      <ScheduleForm />
-    </S.Container>
+      <S.Container>
+        <S.UserHeader>
+          <Avatar src={user.avatarUrl} alt={user.name} />
+          <Heading>{user.name}</Heading>
+          <Text>{user.bio}</Text>
+        </S.UserHeader>
+
+        <ScheduleForm />
+      </S.Container>
+    </>
   )
 }
 
