@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import { Roboto } from '@next/font/google'
 
+import '../lib/dayjs'
+
 import { globalStyles } from '../styles/global'
 
 globalStyles()
