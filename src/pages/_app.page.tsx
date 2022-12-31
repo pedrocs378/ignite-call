@@ -1,8 +1,10 @@
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import { Roboto } from '@next/font/google'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 import '../lib/dayjs'
+import { queryClient } from '../lib/react-query'
 
 import { globalStyles } from '../styles/global'
 
@@ -16,9 +18,11 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <div className={roboto.className}>
-        <Component {...pageProps} />
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className={roboto.className}>
+          <Component {...pageProps} />
+        </div>
+      </QueryClientProvider>
     </SessionProvider>
   )
 }

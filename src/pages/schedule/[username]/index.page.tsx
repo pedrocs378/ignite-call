@@ -20,7 +20,9 @@ export default function Schedule({ user }: ScheduleProps) {
   return (
     <>
       <Head>
-        <title>Agenda de {user.name} | Ignite Call</title>
+        <title>
+          {!user ? 'Carregando...' : `Agenda de ${user.name} | Ignite Call`}{' '}
+        </title>
       </Head>
 
       <S.Container>
