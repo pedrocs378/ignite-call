@@ -19,6 +19,9 @@ export const buildNextAuthOptions = (
       authorization: {
         params: {
           scope: `${BASE_GOOGLE_SCOPE}/userinfo.email ${BASE_GOOGLE_SCOPE}/userinfo.profile ${BASE_GOOGLE_SCOPE}/calendar`,
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
         },
       },
     }),
