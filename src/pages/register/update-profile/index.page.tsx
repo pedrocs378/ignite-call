@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import Head from 'next/head'
 import { useSession } from 'next-auth/react'
 import { ArrowRight } from 'phosphor-react'
 import { z } from 'zod'
@@ -51,9 +51,7 @@ export default function Register() {
 
   return (
     <>
-      <Head>
-        <title>Defina sua disponibilidade | Ignite Call</title>
-      </Head>
+      <NextSeo title="Atualize seu perfil | Ignite Call" noindex />
 
       <RegisterStyles.Container>
         <RegisterStyles.Header>

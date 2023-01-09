@@ -7,6 +7,7 @@ import '../lib/dayjs'
 import { queryClient } from '../lib/react-query'
 
 import { globalStyles } from '../styles/global'
+import { DefaultSeo } from 'next-seo'
 
 globalStyles()
 
@@ -20,6 +21,15 @@ export default function App({
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <div className={roboto.className}>
+          <DefaultSeo
+            openGraph={{
+              type: 'website',
+              locale: 'pt_BR',
+              url: 'https://ignite-call.rocketseat.com.br',
+              siteName: 'Ignite Call',
+            }}
+          />
+
           <Component {...pageProps} />
         </div>
       </QueryClientProvider>

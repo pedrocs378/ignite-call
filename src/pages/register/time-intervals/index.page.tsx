@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { ArrowRight } from 'phosphor-react'
@@ -101,9 +101,7 @@ export default function TimeIntervals() {
 
   return (
     <>
-      <Head>
-        <title>Defina seus horários | Ignite Call</title>
-      </Head>
+      <NextSeo title="Selecione sua disponibilidade | Ignite Call" noindex />
 
       <RegisterStyles.Container>
         <RegisterStyles.Header>
